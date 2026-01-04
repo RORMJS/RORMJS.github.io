@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    /* =============================== */
+    /* Root Variables                  */
+    /* =============================== */
+
+    :root {
+      --bg-main: #0b0b0d;
+      --bg-panel: #141418;
+      --bg-panel-alt: #1c1c22;
+      --border-soft: #2a2a32;
+      --accent-main: #ffcc00;
+      --accent-red: #ff3c38;
+      --text-main: #f2f2f2;
+      --text-muted: #9a9aa5;
+      --glow: 0 0 20px rgba(255, 204, 0, 0.15);
+    }
+
+    /* =============================== */
+    /* Global Reset                    */
+    /* =============================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #121217, #08080a);
+      color: var(--text-main);
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* =============================== */
+    /* Header / Navigation             */
+    /* =============================== */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: linear-gradient(to bottom, #0f0f13, #0b0b0d);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav {
+      max-width: 1400px;
+      margin: auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge {
+      width: 36px;
+      height: 36px;
+      background: var(--accent-main);
+      color: #000;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .spacer {
+      flex: 1;
+    }
+
+    .menu a {
+      margin-left: 18px;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .menu a:hover {
+      color: var(--accent-main);
+    }
+
+    /* =============================== */
+    /* Hero Section                    */
+    /* =============================== */
+
+    .hero {
+      padding: 120px 24px 100px;
+      text-align: center;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.9)),
+        radial-gradient(circle at center, #1b1b22, #0b0b0d);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      text-shadow: var(--glow);
+    }
+
+    .hero .muted {
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
+    /* =============================== */
+    /* Scrolling Ticker                */
+    /* =============================== */
+
+    .ticker {
+      margin-top: 40px;
+      overflow: hidden;
+      border-top: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--border-soft);
+      background: #0e0e12;
+    }
+
+    .ticker span {
+      display: inline-block;
+      padding: 12px 0;
+      white-space: nowrap;
+      animation: tickerScroll 25s linear infinite;
+      color: var(--accent-main);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @keyframes tickerScroll {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* =============================== */
+    /* Main Layout                     */
+    /* =============================== */
+
+    section {
+      max-width: 1300px;
+      margin: auto;
+      padding: 80px 24px;
+    }
+
+    .anchor {
+      scroll-margin-top: 100px;
+    }
+
+    section h2 {
+      font-size: 28px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      border-left: 6px solid var(--accent-main);
+      padding-left: 16px;
+    }
+
+    /* =============================== */
+    /* Cards                           */
+    /* =============================== */
+
+    .card {
+      background: linear-gradient(180deg, var(--bg-panel), var(--bg-panel-alt));
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .muted {
+      color: var(--text-muted);
+    }
+
+    /* =============================== */
+    /* Grids                           */
+    /* =============================== */
+
+    .grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .cols-2 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .cols-3 {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    /* =============================== */
+    /* KPI Blocks                      */
+    /* =============================== */
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .kpi {
+      background: linear-gradient(160deg, #15151b, #0e0e12);
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      padding: 26px;
+      text-align: center;
+    }
+
+    .kpi .lbl {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .kpi .v {
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--accent-main);
+      margin-top: 6px;
+    }
+
+    /* =============================== */
+    /* Pills                           */
+    /* =============================== */
+
+    .pill {
+      display: inline-block;
+      background: var(--accent-red);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    /* =============================== */
+    /* Tables                          */
+    /* =============================== */
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      background: #0f0f14;
+      color: var(--accent-main);
+      text-transform: uppercase;
+      font-size: 12px;
+      padding: 14px;
+      border-bottom: 2px solid var(--border-soft);
+    }
+
+    td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border-soft);
+      font-size: 14px;
+    }
+
+    /* =============================== */
+    /* Media Placeholder               */
+    /* =============================== */
+
+    .media-placeholder {
+      height: 220px;
+      border: 2px dashed var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* =============================== */
+    /* Footer                          */
+    /* =============================== */
+
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid var(--border-soft);
+      background: #0b0b0d;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+  </style>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RORMJS | Rigs Of Rods Monster Jam Shows</title>
+  </head>
+
+  <body class="animations-on">
+
+    <!-- HEADER -->
+    <header class="header">
+      <nav class="nav">
+        <div class="logo">
+          <div class="badge">MJS</div>
+          <div class="title">Rigs Of Rods Monster Jam Shows</div>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="menu">
+          <a href="#overview">Overview</a>
+          <a href="#events">Events</a>
+          <a href="#lineup">Lineup</a>
+          <a href="#results">Results</a>
+          <a href="#media">Media</a>
+          <a href="#credit">Credit</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- HERO / ANNOUNCEMENTS -->
+    <div class="hero">
+      <h1>Rigs Of Rods Monster Jam SHOWS</h1>
+      <p class="muted">Inspired By Monster Jam®</p>
+
+      <div class="ticker">
+        <span>
+          DEBUT: UBS Arena, Belmont Park, NY - Friday, January 9, 2025.
+        </span>
+      </div>
+    </div>
+
+    <!-- SERIES OVERVIEW -->
+    <section id="overview" class="anchor">
+      <h2>Overview</h2>
+      <div class="grid cols-2">
+        <article class="card">
+          <h3>What This Is</h3>
+          <p class="muted">
+            A Rigs Of Rods Monster Truck Motorsport Channel Focused On Realistic Arena Shows, Structured Events, And Broadcast Presentation.</p>
+        </article>
+
+        <article class="card">
+          <h3>Core Competitions</h3>
+          <ul>
+            <li>Racing Competition</li>
+            <li>Two Wheel Skills Challenge</li>
+            <li>Freestyle Competition</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- EVENT STATUS / KPIS -->
+    <section id="events" class="anchor">
+      <h2>Event Status</h2>
+
+      <div class="kpis">
+        <div class="kpi">
+          <div class="lbl muted">Preseason</div>
+          <div class="v">N/A</div>
+        </div>
+        <div class="kpi">
+          <div class="lbl muted">Completed Events</div>
+          <div class="v">0</div>
+        </div>
+        <div class="kpi">
+          <div class="lbl muted">Upcoming Events</div>
+          <div class="v">15</div>
+        </div>
+        <div class="kpi">
+          <div class="lbl muted">Active Trucks</div>
+          <div class="v">N/A</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURRENT / FEATURED EVENT -->
+    <section id="featuredevent" class="anchor">
+      <h2>Featured Event</h2>
+      <article class="card">
+        <span class="pill">DEBUT!</span>
+        <h3>Rigs of Rods Monster Jam Shows - January 9, 2026 
+        </h3>
+        <img src="0103-(2)-Cover.jpg" alt="Event Thumbnail"  width = 400/>
+        <p class="muted">UBS Arena, Belmont Park, NY · Custom Arena Championship Series Central
+        </p>
+
+        <ul>
+          <li>Racing (Time Trials) Competition</li>
+          <li>Two Wheel Skills Challenge</li>
+          <li>Freestyle Competition</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- TRUCK LINEUP -->
+    <section id="lineup" class="anchor">
+      <h2>Custom Arena Championship Series Central</h2>
+      <div class="grid cols-3">
+        <div class="card">Grave Digger</div>
+        <div class="card">El Toro Loco</div>
+        <div class="card">Sparkle Smash</div>
+        <div class="card">Classroom Crusher</div>
+        <div class="card">Terminal Velocity</div>
+        <div class="card">Zombie</div>
+        <div class="card">Megalodon</div>
+        <div class="card">JCB Digatron</div>
+      </div>
+      <h2>Custom Arena Championship Series West</h2>
+      <div class="grid cols-3">
+        <div class="card">Grave Digger</div>
+        <div class="card">El Toro Loco</div>
+        <div class="card">Monster Mutt Dalmatian</div>
+        <div class="card">ThunderROARus</div>
+        <div class="card">Earthshaker</div>
+        <div class="card">Sparkle Smash</div>
+        <div class="card">Jurassic Attack</div>
+        <div class="card">Velociraptor</div>
+      </div>
+      <h2>Custom Arena Championship Series East</h2>
+      <div class="grid cols-3">
+        <div class="card">Grave Digger</div>
+        <div class="card">El Toro Loco</div>
+        <div class="card">Dragon</div>
+        <div class="card">ThunderROARus</div>
+        <div class="card">Zombie</div>
+        <div class="card">Sparkle Smash</div>
+        <div class="card">Megalodon</div>
+        <div class="card">OverBored</div>
+      </div>
+    </section>
+
+    <!-- RESULTS SNAPSHOT -->
+    <section id="results" class="anchor">
+      <h2>Show Results</h2>
+      <article class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Position</th>
+              <th>Truck</th>
+              <th>Category</th>
+              <th>Score / Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <!-- MEDIA HUB -->
+    <section id="media" class="anchor">
+      <h2>Media Hub</h2>
+      <div class="grid cols-2">
+        <article class="card">
+          <h3>Event Replays</h3>
+          <div class="media-placeholder"></div>
+        </article>
+
+        <article class="card">
+          <h3>Highlights</h3>
+          <div class="media-placeholder"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SERIES HISTORY -->
+    <section id="credit" class="anchor">
+      <h2>Credit</h2>
+      <article class="card">
+        <p class="muted">
+          Most (if not all) tracks are created from <a href = "https://sim-monsters.com/profile/8025-tjizzle/">tjizzle</a> on Sim-Monsters for <a href = "https://www.youtube.com/@RORMonsterJamLive">RORMJL</a>. Thanks to them for making this possible. Credit will also be under every video in the comments.
+        </p>
+      </article>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div>
+        RORMJS · Not Affiliated With Monster Jam®
+      </div>
+    </footer>
+
+  </body>
+</html>
