@@ -3,19 +3,22 @@
   <style>
 /* =========================
    ROOT COLOR SYSTEM
-   ========================= */
+========================= */
 :root {
-  --primary-red: #e10600;      /* Motorsport red */
+  --primary-red: #e10600;
   --primary-red-dark: #b30000;
   --primary-red-glow: rgba(225, 6, 0, 0.6);
 
   --black: #0b0b0b;
-  --black-soft: #111111;
+  --black-soft: #111;
   --black-panel: #151515;
 
   --white: #ffffff;
   --gray-light: #cfcfcf;
   --gray-muted: #8a8a8a;
+
+  --radius: 14px;
+  --radius-sm: 8px;
 
   --accent-line: linear-gradient(
     90deg,
@@ -27,99 +30,122 @@
 
 /* =========================
    GLOBAL BASE
-   ========================= */
+========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: "Oswald", "Montserrat", sans-serif;
   background: radial-gradient(circle at top, #1a1a1a, var(--black));
   color: var(--white);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
 }
 
 /* =========================
-   HEADER / TITLE
-   ========================= */
+   HEADER / NAV
+========================= */
 header {
-  background: linear-gradient(
-    180deg,
-    var(--black),
-    var(--black-soft)
-  );
+  background: linear-gradient(180deg, var(--black), var(--black-soft));
   border-bottom: 3px solid var(--primary-red);
-  padding: 2rem;
-  text-transform: uppercase;
 }
 
-header h1 {
-  font-size: 2.5rem;
-  color: var(--white);
-  text-shadow: 0 0 12px var(--primary-red-glow);
-}
-
-header span {
-  color: var(--primary-red);
-}
-
-/* =========================
-   NAVIGATION
-   ========================= */
 nav {
+  max-width: 1300px;
+  margin: auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo .title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-shadow: 0 0 14px var(--primary-red-glow);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.menu {
   display: flex;
   gap: 1.5rem;
-  padding: 1rem 2rem;
-  background: var(--black-panel);
-  border-bottom: 1px solid #222;
 }
 
-nav a {
+.menu a {
   color: var(--gray-light);
   text-decoration: none;
   font-weight: 600;
   position: relative;
+  padding-bottom: 4px;
 }
 
-nav a::after {
+.menu a::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: -6px;
-  width: 0%;
+  width: 0;
   height: 2px;
   background: var(--primary-red);
   transition: width 0.3s ease;
 }
 
-nav a:hover::after {
-  width: 100%;
-}
-
-nav a:hover {
+.menu a:hover {
   color: var(--white);
 }
 
+.menu a:hover::after {
+  width: 100%;
+}
+
 /* =========================
-   SECTION BLOCKS
-   ========================= */
+   HERO
+========================= */
+.hero {
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+  background: radial-gradient(circle at center, #1d1d1d, var(--black));
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 20px var(--primary-red-glow);
+}
+
+.muted {
+  color: var(--gray-muted);
+}
+
+/* =========================
+   SECTIONS
+========================= */
 section {
-  margin: 2.5rem;
-  padding: 2rem;
-  background: linear-gradient(
-    145deg,
-    var(--black-panel),
-    var(--black)
-  );
+  max-width: 1300px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: linear-gradient(145deg, var(--black-panel), var(--black));
   border-left: 4px solid var(--primary-red);
-  box-shadow: 0 0 25px rgba(0,0,0,0.7);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.7);
 }
 
 /* =========================
    HEADINGS
-   ========================= */
+========================= */
 h2 {
   color: var(--primary-red);
-  font-size: 1.8rem;
+  font-size: 2rem;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 h2::after {
@@ -128,98 +154,127 @@ h2::after {
   height: 2px;
   width: 100%;
   background: var(--accent-line);
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
 }
 
 /* =========================
-   EVENT CARDS
-   ========================= */
-.card {
-  background: radial-gradient(
-    circle at top,
-    #1b1b1b,
-    var(--black)
-  );
-  border: 1px solid #222;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  position: relative;
-  overflow: hidden;
+   GRID SYSTEM
+========================= */
+.grid {
+  display: grid;
+  gap: 1.8rem;
 }
 
+.cols-2 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.cols-3 {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* =========================
+   CARDS
+========================= */
+.card {
+  background: radial-gradient(circle at top, #1b1b1b, var(--black));
+  border: 1px solid #222;
+  padding: 1.8rem;
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.85);
+}
+
+/* animated scan line */
 .card::before {
   content: "";
   position: absolute;
   top: 0;
-  left: -50%;
-  width: 200%;
+  left: -60%;
+  width: 220%;
   height: 2px;
   background: var(--primary-red);
   animation: scan 4s linear infinite;
 }
 
 @keyframes scan {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
 }
 
 /* =========================
-   TABLES / RESULTS
-   ========================= */
+   PILL / BADGE
+========================= */
+.pill {
+  display: inline-block;
+  background: var(--primary-red);
+  color: #fff;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  box-shadow: 0 0 15px var(--primary-red-glow);
+}
+
+/* =========================
+   TABLES
+========================= */
 table {
   width: 100%;
   border-collapse: collapse;
-  background: var(--black);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
 }
 
 th {
   background: var(--primary-red);
-  color: var(--white);
-  padding: 0.8rem;
+  padding: 1rem;
   text-transform: uppercase;
 }
 
 td {
-  padding: 0.7rem;
+  padding: 0.85rem;
   border-bottom: 1px solid #222;
   color: var(--gray-light);
 }
 
-tr:hover {
+tr:hover td {
   background: #1c1c1c;
 }
 
 /* =========================
-   BUTTONS
-   ========================= */
-button {
-  background: linear-gradient(
-    135deg,
-    var(--primary-red),
-    var(--primary-red-dark)
+   MEDIA PLACEHOLDER
+========================= */
+.media-placeholder {
+  height: 180px;
+  border-radius: var(--radius-sm);
+  background: repeating-linear-gradient(
+    45deg,
+    #1b1b1b,
+    #1b1b1b 10px,
+    #151515 10px,
+    #151515 20px
   );
-  border: none;
-  color: var(--white);
-  padding: 0.8rem 1.6rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 0 0 15px var(--primary-red-glow);
-}
-
-button:hover {
-  filter: brightness(1.15);
+  opacity: 0.8;
 }
 
 /* =========================
    FOOTER
-   ========================= */
+========================= */
 footer {
+  margin-top: 4rem;
   background: var(--black-soft);
-  color: var(--gray-muted);
-  text-align: center;
-  padding: 1.5rem;
   border-top: 2px solid var(--primary-red);
+  padding: 2rem;
+  text-align: center;
+  color: var(--gray-muted);
   font-size: 0.85rem;
 }
   </style>
