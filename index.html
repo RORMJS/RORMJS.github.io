@@ -1,21 +1,24 @@
  <!DOCTYPE html>
 <html lang="en">
-  <style>
+<style>
 /* =========================
    ROOT COLOR SYSTEM
 ========================= */
 :root {
-  --primary-red: #e10600;
-  --primary-red-dark: #b30000;
-  --primary-red-glow: rgba(225, 6, 0, 0.6);
+  --primary-blue: #0057ff;
+  --primary-blue-dark: #003bb3;
+  --primary-blue-glow: rgba(0, 87, 255, 0.6);
 
-  --black: #0b0b0b;
-  --black-soft: #111;
-  --black-panel: #151515;
+  --secondary-yellow: #ffd400;
+  --secondary-yellow-glow: rgba(255, 212, 0, 0.6);
+
+  --black: #000000;
+  --black-soft: #050505;
+  --black-panel: #000814;
 
   --white: #ffffff;
-  --gray-light: #cfcfcf;
-  --gray-muted: #8a8a8a;
+  --gray-light: #e0e0e0;
+  --gray-muted: #bdbdbd;
 
   --radius: 14px;
   --radius-sm: 8px;
@@ -23,7 +26,7 @@
   --accent-line: linear-gradient(
     90deg,
     transparent,
-    var(--primary-red),
+    var(--secondary-yellow),
     transparent
   );
 }
@@ -40,18 +43,25 @@
 body {
   margin: 0;
   font-family: "Oswald", "Montserrat", sans-serif;
-  background: radial-gradient(circle at top, #1a1a1a, var(--black));
+  background: radial-gradient(circle at top, #001845, #000814);
   color: var(--white);
   letter-spacing: 0.04em;
   line-height: 1.6;
+
+  /* BLACK OUTLINE FOR ALL TEXT */
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
 }
 
 /* =========================
    HEADER / NAV
 ========================= */
 header {
-  background: linear-gradient(180deg, var(--black), var(--black-soft));
-  border-bottom: 3px solid var(--primary-red);
+  background: linear-gradient(180deg, #000814, #001233);
+  border-bottom: 3px solid var(--secondary-yellow);
 }
 
 nav {
@@ -67,7 +77,10 @@ nav {
   font-size: 1.8rem;
   font-weight: 800;
   text-transform: uppercase;
-  text-shadow: 0 0 14px var(--primary-red-glow);
+  text-shadow:
+    0 0 18px var(--primary-blue-glow),
+    -1px -1px 0 #000,
+     1px  1px 0 #000;
 }
 
 .spacer {
@@ -80,9 +93,9 @@ nav {
 }
 
 .menu a {
-  color: var(--gray-light);
+  color: var(--white);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   position: relative;
   padding-bottom: 4px;
 }
@@ -94,12 +107,8 @@ nav {
   bottom: -6px;
   width: 0;
   height: 2px;
-  background: var(--primary-red);
+  background: var(--secondary-yellow);
   transition: width 0.3s ease;
-}
-
-.menu a:hover {
-  color: var(--white);
 }
 
 .menu a:hover::after {
@@ -112,17 +121,20 @@ nav {
 .hero {
   padding: 5rem 2rem 4rem;
   text-align: center;
-  background: radial-gradient(circle at center, #1d1d1d, var(--black));
+  background: radial-gradient(circle at center, #001f54, #000814);
 }
 
 .hero h1 {
   font-size: clamp(2.2rem, 5vw, 3.5rem);
   margin-bottom: 0.5rem;
-  text-shadow: 0 0 20px var(--primary-red-glow);
+  text-shadow:
+    0 0 20px var(--primary-blue-glow),
+    -2px -2px 0 #000,
+     2px  2px 0 #000;
 }
 
 .muted {
-  color: var(--gray-muted);
+  color: var(--gray-light);
 }
 
 /* =========================
@@ -132,8 +144,8 @@ section {
   max-width: 1300px;
   margin: 3rem auto;
   padding: 2.5rem;
-  background: linear-gradient(145deg, var(--black-panel), var(--black));
-  border-left: 4px solid var(--primary-red);
+  background: linear-gradient(145deg, #001845, #000814);
+  border-left: 4px solid var(--secondary-yellow);
   border-radius: var(--radius);
   box-shadow: 0 20px 40px rgba(0,0,0,0.7);
 }
@@ -142,7 +154,7 @@ section {
    HEADINGS
 ========================= */
 h2 {
-  color: var(--primary-red);
+  color: var(--secondary-yellow);
   font-size: 2rem;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
@@ -177,8 +189,8 @@ h2::after {
    CARDS
 ========================= */
 .card {
-  background: radial-gradient(circle at top, #1b1b1b, var(--black));
-  border: 1px solid #222;
+  background: radial-gradient(circle at top, #001f54, #000814);
+  border: 1px solid #002d80;
   padding: 1.8rem;
   border-radius: var(--radius);
   position: relative;
@@ -191,7 +203,6 @@ h2::after {
   box-shadow: 0 25px 50px rgba(0,0,0,0.85);
 }
 
-/* animated scan line */
 .card::before {
   content: "";
   position: absolute;
@@ -199,7 +210,7 @@ h2::after {
   left: -60%;
   width: 220%;
   height: 2px;
-  background: var(--primary-red);
+  background: var(--secondary-yellow);
   animation: scan 4s linear infinite;
 }
 
@@ -213,14 +224,15 @@ h2::after {
 ========================= */
 .pill {
   display: inline-block;
-  background: var(--primary-red);
-  color: #fff;
+  background: var(--secondary-yellow);
+  color: #000;
   padding: 0.35rem 0.8rem;
   border-radius: 999px;
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.08em;
-  box-shadow: 0 0 15px var(--primary-red-glow);
+  box-shadow: 0 0 15px var(--secondary-yellow-glow);
+  text-shadow: none;
 }
 
 /* =========================
@@ -234,19 +246,16 @@ table {
 }
 
 th {
-  background: var(--primary-red);
+  background: var(--secondary-yellow);
+  color: #000;
   padding: 1rem;
   text-transform: uppercase;
+  text-shadow: none;
 }
 
 td {
   padding: 0.85rem;
-  border-bottom: 1px solid #222;
-  color: var(--gray-light);
-}
-
-tr:hover td {
-  background: #1c1c1c;
+  border-bottom: 1px solid #002d80;
 }
 
 /* =========================
@@ -257,12 +266,11 @@ tr:hover td {
   border-radius: var(--radius-sm);
   background: repeating-linear-gradient(
     45deg,
-    #1b1b1b,
-    #1b1b1b 10px,
-    #151515 10px,
-    #151515 20px
+    #001845,
+    #001845 10px,
+    #000814 10px,
+    #000814 20px
   );
-  opacity: 0.8;
 }
 
 /* =========================
@@ -270,19 +278,19 @@ tr:hover td {
 ========================= */
 footer {
   margin-top: 4rem;
-  background: var(--black-soft);
-  border-top: 2px solid var(--primary-red);
+  background: #000814;
+  border-top: 2px solid var(--secondary-yellow);
   padding: 2rem;
   text-align: center;
-  color: var(--gray-muted);
+  color: var(--gray-light);
   font-size: 0.85rem;
 }
-  </style>
+</style>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="Logo.png" type="jpg">
-    <title>RORMJS | Rigs Of Rods Monster Jam Shows</title>
+    <link rel="icon" href="Throwback Series Logo.png" type="png">
+    <title>RORMJS Throwback Series</title>
   </head>
 
   <body class="animations-on">
@@ -339,7 +347,7 @@ Unauthorized reproduction or distribution of original content is prohibited. Cre
     <!-- EVENT STATUS / KPIS -->
     <section id="events" class="anchor">
       <h2>Event Status</h2>
-<span>Season 1: N/A - N/A | Completed Events: 0 | Upcoming Events: N/A</span>
+<span>Season 1: JAN 23 - JUN 28 | Completed Events: 0 | Upcoming Events: N/A</span>
     </section>
 
     <!-- CURRENT / FEATURED EVENT -->
@@ -347,24 +355,24 @@ Unauthorized reproduction or distribution of original content is prohibited. Cre
       <h2>Upcoming Event</h2>
       <article class="card">
         <span class="pill">DEBUT!</span>
-        <h3>Rigs of Rods Monster Jam Shows - TBD
+        <h3>Rigs of Rods Monster Jam Shows - Bridgestone Arena, Nashville, TN
         </h3>
-        <img src="Logo.png" alt="Event Thumbnail"  width = 400/>
-        <p class="muted">TBD · Custom Arena Championship Series Central</p>
+        <img src="Throwback Series Logo.png" alt="Event Thumbnail"  width = 400/>
+        <p class="muted">January 23-25, 2026 · Custom Throwback Series Central</p>
         <h4>Event Info</h4>
         <ul>
           <li></li>
         </ul>
 <h4>Trucks and Drivers</h4>
 <ul>
-  <li>Classroom Crusher - Camden Murphy</li>
-  <li>El Toro Loco - Fernando Martinez</li>
-  <li>Grave Digger (45) - Weston Anderson</li>
-  <li>JCB Digatron - Tristan England</li>
-  <li>Megalodon - Ashley Sanford</li>
-  <li>Sparkle Smash - Jamie Sullivan</li>
-  <li>Terminal Velocity - Jon Zimmer Jr.</li>
-  <li>Zombie - Jon Zimmer Sr.</li>
+  <li>Alien Invasion - Chad Tingler</li>
+  <li>Doom's Day - Colt Stephens</li>
+  <li>El Toro Loco - Mark List</li>
+  <li>Grave Digger (26) - Jon Zimmer Sr.</li>
+  <li>Max-D (Gold) - Tom Meents</li>
+  <li>Monster Mutt Rottweiler - Rod Schmidt</li>
+  <li>Pirates Curse - Steven Sims</li>
+  <li>Scooby Doo - Brianna Mahon</li>
 </ul>        
         <h4>Competitions</h4>
         <ul>
@@ -377,22 +385,22 @@ Unauthorized reproduction or distribution of original content is prohibited. Cre
 
     <!-- TRUCK LINEUP -->
     <section id="lineup" class="anchor">
-      <h2>Custom Arena Championship Series Central Lineup</h2>
+      <h2>Custom Throwback Series Central Lineup</h2>
       <div class="grid cols-3">
-<div class="card">Classroom Crusher</div>
-<div class="card">El Toro Loco</div>
-<div class="card">Grave Digger</div>
-<div class="card">JCB Digatron</div>
-<div class="card">Megalodon</div>
-<div class="card">Sparkle Smash</div>
-<div class="card">Terminal Velocity</div>
-<div class="card">Zombie</div>
+<div class="card">Alien Invasion - Chad Tingler</div>
+<div class="card">Doom's Day - Colt Stephens</div>
+<div class="card">El Toro Loco - Mark List</div>
+<div class="card">Grave Digger - Jon Zimmer Sr.</div>
+<div class="card">Max-D (Gold) - Tom Meents</div>
+<div class="card">Monster Mutt Rottweiler - Rod Schmidt</div>
+<div class="card">Pirates Curse - Steven Sims</div>
+<div class="card">Scooby Doo - Brianna Mahon</div>
     </section>
 
     <!-- RESULTS SNAPSHOT -->
     <section id="results" class="anchor">
       <h2>Event Results</h2>
-      <h3>TBD</h3>
+      <h3>Bridgestone Arena, Nashville, TN - 1</h3>
       <article class="card">
         <table>
           <thead>
@@ -563,9 +571,7 @@ Unauthorized reproduction or distribution of original content is prohibited. Cre
     <section id="credit" class="anchor">
       <h2>Credit</h2>
       <article class="card">
-        <p class="muted">
-          Most (if not all) tracks are created from <a href = "https://sim-monsters.com/profile/8025-tjizzle/">tjizzle</a> on Sim-Monsters for <a href = "https://www.youtube.com/@RORMonsterJamLive">RORMJL</a>. Thanks to them for making this possible. Credit will also be under every video in the comments.
-        </p>
+        <p class="muted">(2016) Bridgestone Arena, Nashville, TN - <a href = "https://sim-monsters.com/files/file/4573-nashville-2016-amsoil-series/">Durham</a></p>
       </article>
     </section>
 
